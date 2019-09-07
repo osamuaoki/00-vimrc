@@ -15,6 +15,11 @@ colorscheme  murphy
 "colorscheme  industry
 "colorscheme  torte
 
+" minimalist non-filetype-specific indenting
+set autoindent
+" More than autoindent
+set smartindent
+
 " Syntax highlight and spelling
 syntax on
 "syntax off
@@ -22,10 +27,39 @@ syntax on
 " Enable filetype based plugin indent control
 filetype plugin indent on
 
-" Disable spell check with en_us for all
-set nospell " set spell when needed or by FT
+" Enable spell check with en_us for all
+set spell
 " Sell check with en_us
 set spelllang=en_us
+
+highlight SpellBad
+  \ cterm=Underline
+  \ ctermfg=NONE
+  \ ctermbg=DarkBlue
+  \ term=Reverse
+  \ gui=Undercurl
+  \ guisp=Red
+highlight SpellCap
+  \ cterm=Underline
+  \ ctermfg=NONE
+  \ ctermbg=DarkBlue
+  \ term=Reverse
+  \ gui=Undercurl
+  \ guisp=Red
+highlight SpellLocal
+  \ cterm=Underline
+  \ ctermfg=NONE
+  \ ctermbg=DarkBlue
+  \ term=Reverse
+  \ gui=Undercurl
+  \ guisp=Red
+highlight SpellRare
+  \ cterm=Underline
+  \ ctermfg=NONE
+  \ ctermbg=DarkBlue
+  \ term=Reverse
+  \ gui=Undercurl
+  \ guisp=Red
 
 " minimalist encoding as utf-8
 set encoding=utf-8
