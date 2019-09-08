@@ -2,21 +2,15 @@
 " make vim copy buffer bigger (default 50 lines: viminfo='100,<50,s10,h)
 set viminfo='100,<5000,s100,h
 
-if $TERM !=# "linux"
+"if $TERM !=# "linux"
+"endif
+
 " Enable 256 colors (TERM=xterm-256color)
 set t_Co=256
 "set t_AB=^[[48;5;%dm
 "set t_AF=^[[38;5;%dm
-" Available color schemes
-" blue darkblue default delek desert elflord evening industry koehler morning
-" murphy pablo peachpuff ron shine slate torte zellner
 "set background=light
 set background=dark
-"colorscheme  default
-colorscheme  murphy
-"colorscheme  industry
-"colorscheme  torte
-endif
 
 " minimalist non-filetype-specific indenting
 set autoindent
@@ -35,34 +29,48 @@ set spell
 " Sell check with en_us
 set spelllang=en_us
 
+" Set color scheme and override spell checker with underline
+function! HiSpell(scheme)
+execute "colorscheme " . a:scheme
+"set background=light
+set background=dark
 highlight SpellBad
   \ cterm=Underline
   \ ctermfg=NONE
-  \ ctermbg=DarkBlue
+  \ ctermbg=NONE
   \ term=Reverse
   \ gui=Undercurl
   \ guisp=Red
 highlight SpellCap
   \ cterm=Underline
   \ ctermfg=NONE
-  \ ctermbg=DarkBlue
+  \ ctermbg=NONE
   \ term=Reverse
   \ gui=Undercurl
   \ guisp=Red
 highlight SpellLocal
   \ cterm=Underline
   \ ctermfg=NONE
-  \ ctermbg=DarkBlue
+  \ ctermbg=NONE
   \ term=Reverse
   \ gui=Undercurl
   \ guisp=Red
 highlight SpellRare
   \ cterm=Underline
   \ ctermfg=NONE
-  \ ctermbg=DarkBlue
+  \ ctermbg=NONE
   \ term=Reverse
   \ gui=Undercurl
   \ guisp=Red
+endfunction
+
+" Set color scheme with spell compatibility
+command -nargs=1 ColorScheme call HiSpell(<args>)
+" Available color schemes
+" blue darkblue default delek desert elflord evening industry koehler morning
+" murphy pablo peachpuff ron shine slate torte zellner
+ColorScheme 'murphy'
+"ColorScheme 'desert'
 
 " minimalist encoding as utf-8
 set encoding=utf-8
