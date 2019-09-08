@@ -2,6 +2,7 @@
 " make vim copy buffer bigger (default 50 lines: viminfo='100,<50,s10,h)
 set viminfo='100,<5000,s100,h
 
+if $TERM !=# "linux"
 " Enable 256 colors (TERM=xterm-256color)
 set t_Co=256
 "set t_AB=^[[48;5;%dm
@@ -11,9 +12,11 @@ set t_Co=256
 " murphy pablo peachpuff ron shine slate torte zellner
 "set background=light
 set background=dark
+"colorscheme  default
 colorscheme  murphy
 "colorscheme  industry
 "colorscheme  torte
+endif
 
 " minimalist non-filetype-specific indenting
 set autoindent
