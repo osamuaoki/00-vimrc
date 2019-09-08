@@ -9,8 +9,6 @@ set viminfo='100,<5000,s100,h
 set t_Co=256
 "set t_AB=^[[48;5;%dm
 "set t_AF=^[[38;5;%dm
-"set background=light
-set background=dark
 
 " minimalist non-filetype-specific indenting
 set autoindent
@@ -33,7 +31,7 @@ set spelllang=en_us
 function! HiSpell(scheme)
 execute "colorscheme " . a:scheme
 "set background=light
-set background=dark
+"set background=dark
 highlight SpellBad
   \ cterm=Underline
   \ ctermfg=NONE
@@ -69,7 +67,7 @@ command -nargs=1 ColorScheme call HiSpell(<args>)
 " Available color schemes
 " blue darkblue default delek desert elflord evening industry koehler morning
 " murphy pablo peachpuff ron shine slate torte zellner
-ColorScheme 'murphy'
+ColorScheme 'default'
 "ColorScheme 'desert'
 
 " minimalist encoding as utf-8
