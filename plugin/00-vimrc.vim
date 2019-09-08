@@ -67,8 +67,11 @@ command -nargs=1 ColorScheme call HiSpell(<args>)
 " Available color schemes
 " blue darkblue default delek desert elflord evening industry koehler morning
 " murphy pablo peachpuff ron shine slate torte zellner
-ColorScheme 'default'
+
+"ColorScheme 'default'
 "ColorScheme 'desert'
+"ColorScheme 'koehler'
+ColorScheme "murphy"
 
 " minimalist encoding as utf-8
 set encoding=utf-8
