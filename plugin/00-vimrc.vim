@@ -6,14 +6,51 @@ set viminfo='100,<5000,s100,h
 set t_Co=256
 "set t_AB=^[[48;5;%dm
 "set t_AF=^[[38;5;%dm
+"
+" Force to use underline for spell check results
+augroup SpellUnderline
+  autocmd!
+  autocmd ColorScheme *
+    \ highlight SpellBad
+    \   cterm=Underline
+    \   ctermfg=NONE
+    \   ctermbg=NONE
+    \   term=Reverse
+    \   gui=Undercurl
+    \   guisp=Red
+  autocmd ColorScheme *
+    \ highlight SpellCap
+    \   cterm=Underline
+    \   ctermfg=NONE
+    \   ctermbg=NONE
+    \   term=Reverse
+    \   gui=Undercurl
+    \   guisp=Red
+  autocmd ColorScheme *
+    \ highlight SpellLocal
+    \   cterm=Underline
+    \   ctermfg=NONE
+    \   ctermbg=NONE
+    \   term=Reverse
+    \   gui=Undercurl
+    \   guisp=Red
+  autocmd ColorScheme *
+    \ highlight SpellRare
+    \   cterm=Underline
+    \   ctermfg=NONE
+    \   ctermbg=NONE
+    \   term=Reverse
+    \   gui=Undercurl
+    \   guisp=Red
+  augroup END
+
 " Available color schemes
 " blue darkblue default delek desert elflord evening industry koehler morning
 " murphy pablo peachpuff ron shine slate torte zellner
 "set background=light
-set background=dark
-colorscheme  murphy
 "colorscheme  industry
 "colorscheme  torte
+colorscheme  murphy
 
 " minimalist non-filetype-specific indenting
 set autoindent
@@ -31,35 +68,6 @@ filetype plugin indent on
 set spell
 " Sell check with en_us
 set spelllang=en_us
-
-highlight SpellBad
-  \ cterm=Underline
-  \ ctermfg=NONE
-  \ ctermbg=DarkBlue
-  \ term=Reverse
-  \ gui=Undercurl
-  \ guisp=Red
-highlight SpellCap
-  \ cterm=Underline
-  \ ctermfg=NONE
-  \ ctermbg=DarkBlue
-  \ term=Reverse
-  \ gui=Undercurl
-  \ guisp=Red
-highlight SpellLocal
-  \ cterm=Underline
-  \ ctermfg=NONE
-  \ ctermbg=DarkBlue
-  \ term=Reverse
-  \ gui=Undercurl
-  \ guisp=Red
-highlight SpellRare
-  \ cterm=Underline
-  \ ctermfg=NONE
-  \ ctermbg=DarkBlue
-  \ term=Reverse
-  \ gui=Undercurl
-  \ guisp=Red
 
 " minimalist encoding as utf-8
 set encoding=utf-8
