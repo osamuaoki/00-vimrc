@@ -36,6 +36,9 @@ set visualbell t_vb=
 " show cursor line underlined
 set cursorline
 
+" Allow to move cursor beyond
+set virtualedit=all
+
 " Set-up buffer pasting
 set nopaste
 set pastetoggle=<f2>
