@@ -33,11 +33,14 @@ set fileencodings=utf-8
 " Turn off bell and visualbell
 set visualbell t_vb=
 
+" show cursor line underlined
+set cursorline
+
 " Set-up buffer pasting
 set nopaste
 set pastetoggle=<f2>
 
-" Remap to apply Macro with "Q" ("qq" to record, "q" to quit, "Q" to apply)
+" Remap to apply Macro with "Q" ("qq" to record, "qq" to quit, "Q" to apply)
 nnoremap Q @q
 xnoremap Q :norm @q<cr>
 
