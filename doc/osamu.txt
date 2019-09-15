@@ -4,81 +4,85 @@
 This 00-vimrc plugin is osamu's basic vimrc setting and his cheat sheet.
 
 ------------------------------------------------------------------------------
-
+Basics for normal mode:
 >
-NORMAL MODE:                    gg      r +-- Char Next
-Back to normal: <ESC>     n N # ?ααα   e / +-- End of Word (non-alnum)
+ NORMAL MODE:        Goto BOF → gg      r +-- Char Next
+ Back to normal: <ESC>    n N # ?ααα   e / +-- End of Word (non-alnum)
                     ai+wWbBsS↓  ^b    t / / +- Word Next (non-alnum)
-+---+  Change c{motion} cc  c↑  ^u   n / / / + End of Word (space)
-|⇅⇅⇅|  Delete d{motion} dd  d↑  H   e / / / / +Word Next (space)
-+---+  Copy   y{motion} yy  y↑  {  C / / / / / + Till α
-|zt |  Put After/Before p / P   ( / / / / / / /  Find α  x  Delete char
-|^e |  "α  Use α as register    k/ / / / / / /  /  EOL   r  Replace char
-|zz |     0 ^ Fα Tα gE B ge b h M l e w E W tα fα $    ~  Change case
-|^y | ↓↓↓ Split Window ↓↓↓      j ---- Line            ga Get Unicode point
-|zb | ^W + ncsvhjkl=+-_<>|      ) ---- Sentence        g8 Get Binary data
-----+ Join lines       J        } ---- Paragraph       ^G Get cursor Position
+ +--+  Change c{motion} cc  c↑  ^u   n / / / + End of Word (space)
+ |⇅⇅|  Delete d{motion} dd  d↑  H   e / / / / +Word Next (space)
+ +--+  Copy   y{motion} yy  y↑  {  C / / / / / + Till α
+ |zt|  Put After/Before p / P   ( / / / / / / /  Find α  x  Delete char
+ |^e|  "α  Use α as register    k/ / / / / / /  /  EOL   r  Replace char
+ |zz|     0 ^ Fα Tα gE B ge b h M l e w E W tα fα $    ~  Change case
+ |^y| ↓↓↓ Split Window ↓↓↓      j ---- Line            ga Get Unicode point
+ |zb| ^W + ncsvhjkl=+-_<>|      ) ---- Sentence        g8 Get Binary data
+ ---+ Join lines       J        } ---- Paragraph       ^G Get cursor Position
       Forward Backward Search   L ---- Bottom of Page  >> {visual}>  → Indent
       n N /ααα ?ααα - Find ααα  ^d --- Prev 1/2 Page   << {visual}<  ← Indent
       n N *    # ---- Indicator ^f --- Next Page       == {visual}=  ⇆ Indent
       , ; tα   Tα --- Till α    /ααα - Find ααα * n N  {visual}gq Format Text
       , ; fα   Fα --- Find α    G ---- Goto EOF        {visual}g? ROT13
-  Next Prev   %  --- Find Match [{ ]} [[ ]] [] ][ Look for {}  ¶  ^o Go-Back
-Replace mode: R   Open folds: zR   Record: qα  End-Record: q  Play-Record: @α
-Insert Mode: i/a Before/After Char  I/A Before/After Line  O/o above/below
-Visual mode: v Char V Line ^V Block   mα Mark as α={a-zA-Z}   `α/'α Jump to α
-Ex Mode: :e φφφ :enew :w φφφ :wall :wq :q! :%s/ααα/βββ/gc :ls :bn :bp :bd :!
-<_____________________________________________________________________________
->
-INSERT/REPLACE MODE:
-^H    Backspace
-^W    Del Word
-^U    Rubout
-^R"   Paste Deleted/Yanked (useful in REPLACE)
-<ESC>  normal mode
+   Next Prev   %  --- Find Match [{ ]} [[ ]] [] ][ Look for {}  ¶  ^o Go-Back
+ Replace mode: R   Open folds: zR   Record: qα  End-Record: q  Play-Record: @α
+ Insert Mode: i/a Before/After Char  I/A Before/After Line  O/o above/below
+ Visual mode: v Char V Line ^V Block   mα Mark as α={a-zA-Z}   `α/'α Jump to α
+ Ex Mode: :e φφφ :enew :w φφφ :wall :wq :q! :%s/ααα/βββ/gc :ls :bn :bp :bd :!
 <
 _____________________________________________________________________________
+Basics of insert/replace mode
 >
-Visual-block mode: :set virtualedit=block   or use $ at the widest line
-Ascii art          :set virtualedit=all
+ INSERT/REPLACE MODE:
+ ^H    Backspace
+ ^W    Del Word
+ ^U    Rubout
+ ^R"   Paste Deleted/Yanked (useful in REPLACE)
+ <ESC>  normal mode
 <
 _____________________________________________________________________________
+
 >
-Local tricks
-kj  as <ESC>
-Q   as @q
+ Visual-block mode: :set virtualedit=block   or use $ at the widest line
+ Ascii art          :set virtualedit=all
+<
+_____________________________________________________________________________
+
+>
+ Local tricks
+ kj  as <ESC>
+ Q   as @q
 <
 
 Things to learn
 
 >
-` # $ % ^ * ( ) 0 _ - + w W e E t T I o O
-{ } [[ [] ][ ]] [m [M ]m ]M [( ]) [{ ]} |
-A f F ge gE gg G g0 gm g^ g$ g_ g, g; gj gk gI h H j k l L ; '
-z. z z- zz zt zb b B n N M , / ? -
+ ` # $ % ^ * ( ) 0 _ - + w W e E t T I o O
+ { } [[ [] ][ ]] [m [M ]m ]M [( ]) [{ ]} |
+ A f F ge gE gg G g0 gm g^ g$ g_ g, g; gj gk gI h H j k l L ; '
+ z. z z- zz zt zb b B n N M , / ? -
 <
 
 >
-vimgrep make ...
+ vimgrep make ...
 <
 _____________________________________________________________________________
 US keyboard
 
 >
-←←←←←→→→→→ XXX
-5432222345 555
+ ←←←←←→→→→→ XXX
+ 5432222345 555
 
-1234567890 -=
-!@#$%^&*() _+
+ 1234567890 -=  ← un-shifted
+ !@#$%^&*() _+
 
-qwertyuiop []\
-↑↑↑↑↑↑↑↑↑↑ {}|
+ qwertyuiop []\ ← un-shifted
+ ↑↑↑↑↑↑↑↑↑↑ {}|
 
-asdfghjkl; '
-↑↑↑↑↑↑↑↑↑: "
+ asdfghjkl; '   ← un-shifted
+ ↑↑↑↑↑↑↑↑↑: "
 
-zxcvbnm,./
-↑↑↑↑↑↑↑<>?
+ zxcvbnm,./     ← un-shifted
+ ↑↑↑↑↑↑↑<>?
 <
 _____________________________________________________________________________
 " vim:set sts=2 sw=2 ai si et tw=78:
