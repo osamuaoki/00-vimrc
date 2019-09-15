@@ -45,7 +45,7 @@ nnoremap Q @q
 xnoremap Q :norm @q<cr>
 
 " Remap quick jk to to get out from insert mode
-inoremap jk  <Esc>
+inoremap kj  <Esc>
 
 " Remap in visual mode < > related
 xnoremap > >gv
