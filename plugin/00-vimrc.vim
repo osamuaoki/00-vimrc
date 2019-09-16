@@ -1,5 +1,7 @@
 " vim: set sw=2 sts=2 et ft=vim :
 "
+" To be safe side
+set shell=bash
 " Enable filetype based plugin indent control
 filetype plugin indent on
 
@@ -24,14 +26,6 @@ set fileencodings=utf-8
 " make vim copy buffer bigger (default 50 lines: viminfo='100,<50,s10,h)
 set viminfo='100,<5000,s100,h
 
-" Turn off bell and use visualbell
-"set visualbell
-" Turn off bell and visualbell
-set visualbell t_vb=
-
-" show cursor line underlined
-set cursorline
-
 " Allow to move cursor beyond
 set virtualedit=all
 
@@ -53,6 +47,16 @@ function! CleverTab()
    endif
 endfunction
 inoremap <Tab> <C-R>=CleverTab()<CR>
+" Auto complete <C-P> with <S-TAB> in non-BOL
+"
+function! CleverSTab()
+   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+      return "\<S-Tab>"
+   else
+      return "\<C-P>"
+   endif
+endfunction
+inoremap <S-Tab> <C-R>=CleverSTab()<CR>
 
 "----------------------------------------------------------------------
 " From #vim Recommendations
@@ -98,11 +102,6 @@ nnoremap <leader>q :b#<cr>
 " runs :TTags but on the current file, lands me on a prompt to filter the tags
 nnoremap <leader>t :TTags<space>*<space>*<space>.<cr>
 
-"-----------------------------------------------------------------------------
-" From mhinz/vim-galore
-" https://github.com/mhinz/vim-galore
-"
-
 " ---------------------------------------------------------------------------
 " PERSONAL REMAP
 "
@@ -117,16 +116,58 @@ xnoremap Q :norm @q<cr>
 " Remap quick jk to to get out from insert mode (I don't use "kj" in insert mode)
 inoremap kj  <Esc>
 
+
+"-----------------------------------------------------------------------------
+" From mhinz/vim-galore
+" https://github.com/mhinz/vim-galore
+
 " Remap in visual mode < > related
 " (This kills normal use of . after > but more visible)
 xnoremap > >gv
 xnoremap < <gv
 " Don't remap <TAB> in NORMAL
 
-" For smarter command line <c-n>t<c-p> https://github.com/mhinz/vim-galore
+" For smarter command line <c-n>t<c-p>
 cnoremap <c-n>  <down>
 cnoremap <c-p>  <up>
 
+" Saner CTRL-L
+nnoremap <leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
+
+" Disable audible and visual bells
+set noerrorbells
+set novisualbell
+set t_vb=
+
+" cursorline in-NORMAL (and starting)
+augroup MyCursor
+  au!
+  autocmd InsertLeave,WinEnter,VimEnter * set cursorline
+  autocmd InsertEnter,WinLeave * set nocursorline
+augroup END
+
+" Faster keyword completion with <c-n>/<c-p> (and <TAB> remapped)
+set complete-=i   " disable scanning included files
+set complete-=t   " disable searching tags
+
+set nolist        " Don't Show non-printable characters as default
+if has('multi_byte') && &encoding ==# 'utf-8'
+  let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
+else
+  let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
+endif
+
+"zv to make sure to show
+nnoremap gg  ggzv
+nnoremap G   Gzv
+nnoremap g;  g;zvzz
+nnoremap g,  g,zvzz
+
+nnoremap <c-i>  <c-i>zvzz
+nnoremap <c-o>  <c-o>zvzz
+
+
+"-----------------------------------------------------------------------------
 " Rendering fast
 set ttyfast
 " Cursor motion
@@ -161,7 +202,8 @@ set laststatus=2
 " Maximum internal statusline with full path from PWD or as typed
 " set statusline=%<%f%m%r%h%w[U+%04B]%=[%{&ff}]%y\ (%4l/%4L,%3c%V)\ %P
 " Maximum internal statusline with file name (tail)
-set statusline=%<%t%m%r%h%w[U+%04B]%=[%{&ff}]%y\ (%4l/%4L,%3c%V)\ %P
+" set statusline=%<%t%m%r%h%w[U+%04B]%=[%{&ff}]%y\ (%4l/%4L,%3c%V)\ %P
+set statusline=%<%t%m%r%h%w%=[%{&ff}]%y\ (%4l/%4L,%3c%V)\ %P
 "
 " Display mode
 set nowrap
