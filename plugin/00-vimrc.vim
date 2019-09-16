@@ -47,17 +47,68 @@ set pastetoggle=<f2>
 nnoremap Q @q
 xnoremap Q :norm @q<cr>
 
-" Remap quick jk to to get out from insert mode
+" Remap quick jk to to get out from insert mode (I don't use "kj" in insert mode)
 inoremap kj  <Esc>
 
 " Remap in visual mode < > related
+" (This kills normal use of . after > but more visible)
 xnoremap > >gv
 xnoremap < <gv
 xnoremap <Tab> >gv
 xnoremap <S-Tab> <gv
+" move cursor to the line head
 nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
 inoremap <S-Tab> <C-D>
+
+" #vim Recommendations: https://www.vi-improved.org/recommendations/
+" lets me add files with wildcards
+nnoremap <leader>a :argadd <c-r>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
+" lands me on the buffer prompt and displays all buffers
+nnoremap <leader>b :b <C-d>
+" similar to buffers but for opening a single file
+nnoremap <leader>e :e **/
+" drops me to the grep line
+nnoremap <leader>g :grep<space>
+" :ilist go into a quickfix window
+nnoremap <leader>i :Ilist<space>
+" lands me on a taglist jump command line
+nnoremap <leader>j :tjump /
+" runs make
+nnoremap <leader>m :make<cr>
+" strips whitespace
+nnoremap <leader>s :call StripTrailingWhitespace()<cr>
+" switches to the last buffer to (q)uickswitch back
+nnoremap <leader>q :b#<cr>
+" runs :TTags but on the current file, lands me on a prompt to filter the tags
+nnoremap <leader>t :TTags<space>*<space>*<space>.<cr>
+
+" built in completion for INSERT mode (ins-completion)
+" Completion by file names
+inoremap <silent> <leader>f <C-x><C-f>
+" Completion by keywords in the current and included files
+inoremap <silent> <leader>i <C-x><C-i>
+" Completion by whole lines
+inoremap <silent> <leader>l <C-x><C-l>
+" Completion by searching forwards in the current file
+inoremap <silent> <leader>n <C-x><C-n>
+" Completion by searching backwards in the current file
+inoremap <silent> <leader>p <C-x><C-p>
+" Completion by omni completion
+inoremap <silent> <leader>o <C-x><C-o>
+" Completion by user defined completion
+inoremap <silent> <leader>u <C-x><C-u>
+
+" Better better-whitespace
+function! StripTrailingWhitespace()
+  if !&binary && &filetype != 'diff'
+    normal mz
+    normal Hmy
+    %s/\s\+$//e
+    normal 'yz<CR>
+    normal `z
+  endif
+endfunction
 
 " Rendering fast
 set ttyfast
