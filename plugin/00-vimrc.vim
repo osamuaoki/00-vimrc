@@ -26,8 +26,8 @@ set fileencodings=utf-8
 " make vim copy buffer bigger (default 50 lines: viminfo='100,<50,s10,h)
 set viminfo='100,<5000,s100,h
 
-" Allow to move cursor beyond
-set virtualedit=all
+" Allow to move cursor beyond for block
+set virtualedit=block
 
 "-----------------------------------------------------------------------------
 " Use <SPACE> as leader instead of '\'
