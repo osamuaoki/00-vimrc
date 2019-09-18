@@ -37,7 +37,8 @@ let mapleader = ' '
 "-----------------------------------------------------------------------------
 " From vim manual: ins-completion
 "
-" Auto complete <C-N> with <TAB> in non-BOL
+" Auto complete <C-N> with <TAB> except when BOL or BOL+SPACEs
+" (TAB may be used to indent line under "set expandtab")
 "
 function! CleverTab()
    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
@@ -85,12 +86,12 @@ nnoremap <leader>m :make<cr>
 
 " strips whitespace
 nnoremap <leader>s :call StripTrailingWhitespace()<cr>
-" Better better-whitespace
+" Better better-whitespace including zenkaku-space
 function! StripTrailingWhitespace()
   if !&binary && &filetype != 'diff'
     normal mz
     normal Hmy
-    %s/\s\+$//e
+    %s/[\u3000[:space:]]\+$//e
     normal 'yz<CR>
     normal `z
   endif
@@ -113,9 +114,11 @@ set pastetoggle=<f2>
 nnoremap Q @q
 xnoremap Q :norm @q<cr>
 
-" Remap quick jk to to get out from insert mode (I don't use "kj" in insert mode)
+" Map quick "kj"   to enter "<ESC>" in insert mode (remember as "knee jerk")
+" Map quick "kjk"  to enter "kj"    in insert mode (or wait after "k")
+" Use quick "kjkk" to enter "kjk"   in insert mode
+inoremap kjk kj
 inoremap kj  <Esc>
-
 
 "-----------------------------------------------------------------------------
 " From mhinz/vim-galore
