@@ -59,23 +59,75 @@ function! CleverSTab()
 endfunction
 inoremap <S-Tab> <C-R>=CleverSTab()<CR>
 
+
+" Command line: (defaults)
+"  ^B   BOL
+"  ^E   EOL
+"  ^F   Open the command-line window (NORMAL MODE like)
+"  ^W   DEL-Word
+"  ^U   DEL-Before (^E^B to DEL-line)
+"  ^P   Previous line
+"  ^N   Next line
+"
+" Add Ex MODE key binding for left-right-up-dn-del
+" these should be minimal conflict choicees
+"
+" Use <BS> to delete char    (^H has minimal impact)
+cnoremap <C-H> <Left>
+" Use <Return> to enter line (^J has no negative) (but ^N usable)
+"cnoremap <C-J> <Down>
+" I don't use digraph (^K)                        (but ^P usable)  
+"cnoremap <C-K> <Up>
+" I don't use match under ... feature (^L)
+cnoremap <C-L> <Right>
+" I don't see any usage of ^X in Ex MODE
+cnoremap <C-X> <DEL>
+"-----------------------------------------------------------
+" (*) readline-like bindings which are mentioned in vim manual:  
+" cmdline-editing -- These are not used to avoid confusion
+" READLINE: beginning-of-line (*) --> ^B does this in Vim
+" ^A seems to be used for command-line completion
+"cnoremap <C-A> <Home>
+" READLINE: end-of-line (not in example since this is Vim default)
+"cnoremap <C-E> <End>
+" READLINE: forward-char (*) 
+" Usually cedit is set to ^F to open the command-line window
+"cnoremap <C-F> <Right>
+" READLINE: backward-char (*)
+" Vim uses this for BOL
+"cnoremap <C-B> <Left>
+" --- OK but ...
+" READLINE: backward-word (*)
+"cnoremap <Esc>b <S-Left>
+" READLINE: forward-word (*)
+"cnoremap <Esc>f <S-Right>
+
+"----------------------------------------------------------------------
+" Now that I map ^H and ^L in COMMAND MODE, 
+" Let's do the similar in INSERT MODE
+"
+inoremap <C-H> <Left>
+inoremap <C-J> <Down>
+inoremap <C-K> <Up>
+inoremap <C-L> <Right>
+
 "----------------------------------------------------------------------
 " From #vim Recommendations
 " https://www.vi-improved.org/recommendations/
 "
-" lets me add files with wildcards
+" Add all files in the same directory of the one in the current buffer
 nnoremap <leader>a :argadd <c-r>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
 
-" lands me on the buffer prompt and displays all buffers
+" Display all buffers and prompt buffer
 nnoremap <leader>b :b <C-d>
 
-" similar to buffers but for opening a single file
+" Prompt for filename entry (partial+TAB OK) to find one file under tree 
 nnoremap <leader>e :e **/
 
-" drops me to the grep line
+" drops me to the grep line (|cw)
 nnoremap <leader>g :grep<space>
 
-" :ilist go into a quickfix window
+" :Ilist to go into a quickfix window (|cw)
 nnoremap <leader>i :Ilist<space>
 
 " lands me on a taglist jump command line
@@ -103,6 +155,19 @@ nnoremap <leader>q :b#<cr>
 " runs :TTags but on the current file, lands me on a prompt to filter the tags
 nnoremap <leader>t :TTags<space>*<space>*<space>.<cr>
 
+" ...........................................................................
+" From mhinz/vim-galore https://github.com/mhinz/vim-galore
+" Saner CTRL-L to redraw screen (l->w)
+nnoremap <leader>w :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
+
+" ...........................................................................
+" PERSONAL
+
+ nnoremap <leader>l :ls<CR>
+ nnoremap <leader>c :cw<CR>
+ nnoremap <leader>n :cnext<CR>
+ nnoremap <leader>p :cprev<CR>
+ nnoremap <leader>d :bufdo<space>
 " ---------------------------------------------------------------------------
 " PERSONAL REMAP
 "
@@ -120,6 +185,8 @@ xnoremap Q :norm @q<cr>
 inoremap kjk kj
 inoremap kj  <Esc>
 
+tnoremap kjk kj
+tnoremap kj  <C-W>N
 "-----------------------------------------------------------------------------
 " From mhinz/vim-galore
 " https://github.com/mhinz/vim-galore
@@ -133,9 +200,6 @@ xnoremap < <gv
 " For smarter command line <c-n>t<c-p>
 cnoremap <c-n>  <down>
 cnoremap <c-p>  <up>
-
-" Saner CTRL-L
-nnoremap <leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 
 " Disable audible and visual bells
 set noerrorbells
@@ -196,6 +260,7 @@ set laststatus=2
 "              | | | | | |    |    |  +-- current fileformat
 "              | | | | | |    |    +-- separation point
 "              | | | | | |    +  Unicode (hex)
+ nnoremap <leader>n :bnext<CR>
 "              | | | | | +-- preview flag in square brackets
 "              | | | | +-- help flag in square brackets
 "              | | | +-- readonly flag in square brackets
