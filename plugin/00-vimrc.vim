@@ -1,4 +1,20 @@
-" vim: set sw=2 sts=2 et ft=vim :
+"============================================================================
+"File:        00-vimrc.vim
+"Description: Vim plugin for on the fly syntax checking.
+"License:     This program is free software. It comes without any warranty,
+"             to the extent permitted by applicable law. You can redistribute
+"             it and/or modify it under the terms of the Do What The Fuck You
+"             Want To Public License, Version 2, as published by Sam Hocevar.
+"             See http://sam.zoy.org/wtfpl/COPYING for more details.
+"
+"============================================================================
+
+if exists('g:loaded_vimrc_plugin') || &compatible
+    finish
+endif
+let g:loaded_vimrc_plugin = 1
+
+let s:vimrc_level =  get(g:, 'vimrc_level', 0)
 "
 " To be safe side
 set shell=bash
@@ -30,16 +46,12 @@ set viminfo='100,<5000,s100,h
 set virtualedit=block
 
 "-----------------------------------------------------------------------------
-" Use <SPACE> as leader instead of '\'
-" In NORMAL mode, SPACE is useless.  This has to be before <leader> usage.
-let mapleader = ' '
-
-"-----------------------------------------------------------------------------
 " From vim manual: ins-completion
 "
 " Auto complete <C-N> with <TAB> except when BOL or BOL+SPACEs
 " (TAB may be used to indent line under "set expandtab")
 "
+if s:vimrc_level > 0
 function! CleverTab()
    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
       return "\<Tab>"
@@ -58,8 +70,10 @@ function! CleverSTab()
    endif
 endfunction
 inoremap <S-Tab> <C-R>=CleverSTab()<CR>
+endif
 
 
+if s:vimrc_level > 1
 " Command line: (defaults)
 "  ^B   BOL
 "  ^E   EOL
@@ -110,6 +124,15 @@ inoremap <C-H> <Left>
 inoremap <C-J> <Down>
 inoremap <C-K> <Up>
 inoremap <C-L> <Right>
+
+"-----------------------------------------------------------------------------
+endif " if > 1
+
+if s:vimrc_level > 0
+"-----------------------------------------------------------------------------
+" Use <SPACE> as leader instead of '\'
+" In NORMAL mode, SPACE is useless.  This has to be before <leader> usage.
+let mapleader = ' '
 
 "----------------------------------------------------------------------
 " From #vim Recommendations
@@ -163,11 +186,12 @@ nnoremap <leader>w :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 " ...........................................................................
 " PERSONAL
 
- nnoremap <leader>l :ls<CR>
- nnoremap <leader>c :cw<CR>
- nnoremap <leader>n :cnext<CR>
- nnoremap <leader>p :cprev<CR>
- nnoremap <leader>d :bufdo<space>
+nnoremap <leader>l :ls<CR>
+nnoremap <leader>c :cw<CR>
+nnoremap <leader>n :cnext<CR>
+nnoremap <leader>p :cprev<CR>
+nnoremap <leader>d :bufdo<space>
+
 " ---------------------------------------------------------------------------
 " PERSONAL REMAP
 "
@@ -201,22 +225,6 @@ xnoremap < <gv
 cnoremap <c-n>  <down>
 cnoremap <c-p>  <up>
 
-" Disable audible and visual bells
-set noerrorbells
-set novisualbell
-set t_vb=
-
-" cursorline in-NORMAL (and starting)
-augroup MyCursor
-  au!
-  autocmd InsertLeave,WinEnter,VimEnter * set cursorline
-  autocmd InsertEnter,WinLeave * set nocursorline
-augroup END
-
-" Faster keyword completion with <c-n>/<c-p> (and <TAB> remapped)
-set complete-=i   " disable scanning included files
-set complete-=t   " disable searching tags
-
 set nolist        " Don't Show non-printable characters as default
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'tab:▸ ,extends:»,precedes:«,nbsp:␣'
@@ -233,7 +241,24 @@ nnoremap g,  g,zvzz
 nnoremap <c-i>  <c-i>zvzz
 nnoremap <c-o>  <c-o>zvzz
 
+"-----------------------------------------------------------------------------
+" Disable audible and visual bells
+set noerrorbells
+set novisualbell
+set t_vb=
 
+" cursorline in-NORMAL (and starting)
+augroup MyCursor
+  au!
+  autocmd InsertLeave,WinEnter,VimEnter * set cursorline
+  autocmd InsertEnter,WinLeave * set nocursorline
+augroup END
+
+" Faster keyword completion with <c-n>/<c-p> (and <TAB> remapped)
+set complete-=i   " disable scanning included files
+set complete-=t   " disable searching tags
+
+endif " if >0
 "-----------------------------------------------------------------------------
 " Rendering fast
 set ttyfast
@@ -286,3 +311,4 @@ set wildmenu
 "
 "
 " filler
+" vim: set sw=2 sts=2 et ft=vim :
