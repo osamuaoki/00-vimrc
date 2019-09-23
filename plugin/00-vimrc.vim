@@ -117,7 +117,7 @@ cnoremap <C-X> <DEL>
 "cnoremap <Esc>f <S-Right>
 
 "----------------------------------------------------------------------
-" Now that I map ^H and ^L in COMMAND MODE, 
+" Now that I map ^H and ^L in COMMAND MODE,
 " Let's do the similar in INSERT MODE
 "
 inoremap <C-H> <Left>
@@ -144,7 +144,7 @@ nnoremap <leader>a :argadd <c-r>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
 " Display all buffers and prompt buffer
 nnoremap <leader>b :b <C-d>
 
-" Prompt for filename entry (partial+TAB OK) to find one file under tree 
+" Prompt for filename entry (partial+TAB OK) to find one file under tree
 nnoremap <leader>e :e **/
 
 " drops me to the grep line (|cw)
@@ -159,18 +159,7 @@ nnoremap <leader>j :tjump /
 " runs make
 nnoremap <leader>m :make<cr>
 
-" strips whitespace
-nnoremap <leader>s :call StripTrailingWhitespace()<cr>
-" Better better-whitespace including zenkaku-space
-function! StripTrailingWhitespace()
-  if !&binary && &filetype != 'diff'
-    normal mz
-    normal Hmy
-    %s/[\u3000[:space:]]\+$//e
-    normal 'yz<CR>
-    normal `z
-  endif
-endfunction
+" strips whitespace --> Use vim-better-whitespace
 
 " switches to the last buffer to (q)uickswitch back
 nnoremap <leader>q :b#<cr>
