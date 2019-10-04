@@ -233,6 +233,22 @@ augroup MyCursor
 augroup END
 endif " if >0
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" INSERT MODE
+"
+" Normally "," is followed by space.  So use it as leader key in NORMAL MODE
+" CTRL-X is tough to type.
+"
+if s:vimrc_level > 1
+inoremap <silent> ,f <C-x><C-f>
+inoremap <silent> ,i <C-x><C-i>
+inoremap <silent> ,l <C-x><C-l>
+inoremap <silent> ,n <C-x><C-n>
+inoremap <silent> ,o <C-x><C-o>
+inoremap <silent> ,t <C-x><C-]>
+inoremap <silent> ,u <C-x><C-u>
+endif " if >1
+
 "
 " filler
 " vim: set sw=2 sts=2 et ft=vim :
