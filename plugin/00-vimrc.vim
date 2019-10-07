@@ -17,14 +17,12 @@ let g:loaded_vimrc_plugin = 1
 let s:vimrc_level =  get(g:, 'vimrc_level', 0)
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use incremental search as default
-if s:vimrc_level > 0
+" Use incremental search as defaultif s:vimrc_level > 0
 set incsearch                  " Incremental search ON
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
-endif " s:vimrc_level > 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load matchit.vim, but only if the user hasn't installed a newer version.
@@ -32,6 +30,11 @@ if s:vimrc_level > 0
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
+endif " s:vimrc_level > 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Break undo sequence: CTRL-G u
+if s:vimrc_level > 0
 if empty(mapcheck('<C-U>', 'i'))
   inoremap <C-U> <C-G>u<C-U>
 endif
@@ -41,7 +44,7 @@ endif
 endif " s:vimrc_level > 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" From vim manual: ins-completion
+" Inspired by vim manual: ins-completion (with some twist)
 "
 " Auto complete <C-N> with <TAB> if tailing non-space character
 " (TAB may be used to indent line under "set expandtab")
@@ -70,7 +73,6 @@ endif " s:vimrc_level > 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cursor movament for COMMAND MODE and INSERT MODE
 "
-if s:vimrc_level > 1
 " Command line: (defaults)
 "  ^B   BOL
 "  ^E   EOL
@@ -80,20 +82,22 @@ if s:vimrc_level > 1
 "  ^P   Previous line
 "  ^N   Next line
 "
+" >>> Let's keep it simple not to reassign
+"if s:vimrc_level > 1
+"
 " Add Ex MODE key binding for left-right-up-dn-del
 " these should be minimal conflict choicees
 "
 " Use <BS> to delete char    (^H has minimal impact)
-cnoremap <C-H> <Left>
+"cnoremap <A-H> <Left>
 " Use <Return> to enter line (^J has no negative) (but ^N usable)
-"cnoremap <C-J> <Down>
+"cnoremap <A-J> <Down>
 " I don't use digraph (^K)                        (but ^P usable)
-"cnoremap <C-K> <Up>
+"cnoremap <A-K> <Up>
 " I don't use match under ... feature (^L)
-cnoremap <C-L> <Right>
+"cnoremap <A-L> <Right>
 " I don't see any usage of ^X in Ex MODE
-cnoremap <C-X> <DEL>
-
+"cnoremap <A-X> <Del>
 " (*) readline-like bindings which are mentioned in vim manual:
 " cmdline-editing -- These are not used to avoid confusion
 " READLINE: beginning-of-line (*) --> ^B does this in Vim
@@ -116,12 +120,12 @@ cnoremap <C-X> <DEL>
 " Now that I map ^H and ^L in COMMAND MODE,
 " Let's do the similar in INSERT MODE
 "
-inoremap <C-H> <Left>
-inoremap <C-J> <Down>
-inoremap <C-K> <Up>
-inoremap <C-L> <Right>
-
-endif " if > 1
+"inoremap <A-H> <Left>
+"inoremap <A-J> <Down>
+"inoremap <A-K> <Up>
+"inoremap <A-L> <Right>
+"inoremap <A-X> <Del>
+"endif " if > 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set up <leader> usage in NORMAL mode
@@ -212,7 +216,7 @@ cnoremap <c-n>  <down>
 cnoremap <c-p>  <up>
 
 "zv to make sure to show folds
-"zz to redraw line at the center of screen 
+"zz to redraw line at the center of screen
 nnoremap gg  ggzv
 nnoremap G   Gzv
 nnoremap g;  g;zvzz
