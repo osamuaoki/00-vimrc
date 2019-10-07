@@ -43,12 +43,12 @@ endif " s:vimrc_level > 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " From vim manual: ins-completion
 "
-" Auto complete <C-N> with <TAB> except when BOL or BOL+SPACEs
+" Auto complete <C-N> with <TAB> if tailing non-space character
 " (TAB may be used to indent line under "set expandtab")
 "
 if s:vimrc_level > 0
 function! CleverTab()
-  if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+  if strpart( getline('.'), 0, col('.')-1 ) =~ '\(^\|\s\)$'
     return "\<Tab>"
   else
     return "\<C-N>"
@@ -58,7 +58,7 @@ inoremap <Tab> <C-R>=CleverTab()<CR>
 " Auto complete <C-P> with <S-TAB> in non-BOL
 "
 function! CleverSTab()
-  if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+  if strpart( getline('.'), 0, col('.')-1 ) =~ '\(^\|\s\)$'
     return "\<S-Tab>"
   else
     return "\<C-P>"
