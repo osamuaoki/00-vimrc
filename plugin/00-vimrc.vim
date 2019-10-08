@@ -47,7 +47,6 @@ endif " s:vimrc_level > 0
 " Inspired by vim manual: ins-completion (with some twist)
 "
 " Auto complete <C-N> with <TAB> if tailing non-space character
-" (TAB may be used to indent line under "set expandtab")
 "
 if s:vimrc_level > 0
 function! CleverTab()
@@ -58,7 +57,7 @@ function! CleverTab()
   endif
 endfunction
 inoremap <Tab> <C-R>=CleverTab()<CR>
-" Auto complete <C-P> with <S-TAB> in non-BOL
+" Auto complete <C-P> with <S-TAB> if tailing non-space character
 "
 function! CleverSTab()
   if strpart( getline('.'), 0, col('.')-1 ) =~ '\(^\|\s\)$'
@@ -72,7 +71,7 @@ endif " s:vimrc_level > 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cursor movament for COMMAND MODE and INSERT MODE
-"
+" >>> DISABLED <<< >>> BAD IDEA <<<
 " Command line: (defaults)
 "  ^B   BOL
 "  ^E   EOL
