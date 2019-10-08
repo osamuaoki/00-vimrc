@@ -68,33 +68,6 @@ inoremap <S-Tab> <C-R>=CleverSTab()<CR>
 endif " s:vimrc_level > 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use incremental search as defaultif s:vimrc_level > 0
-set incsearch                  " Incremental search ON
-" Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-endif
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if s:vimrc_level > 0
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
-endif
-endif " s:vimrc_level > 0
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Break undo sequence: CTRL-G u
-if s:vimrc_level > 0
-if empty(mapcheck('<C-U>', 'i'))
-  inoremap <C-U> <C-G>u<C-U>
-endif
-if empty(mapcheck('<C-W>', 'i'))
-  inoremap <C-W> <C-G>u<C-W>
-endif
-endif " s:vimrc_level > 0
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " From mhinz/vim-galore https://github.com/mhinz/vim-galore
 
 if s:vimrc_level > 0
@@ -117,7 +90,7 @@ nnoremap g,  g,zvzz
 nnoremap <c-i>  <c-i>zvzz
 nnoremap <c-o>  <c-o>zvzz
 
-endif " if > 0
+endif " s:vimrc_level > 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cursorline in-NORMAL (and starting)
@@ -128,7 +101,36 @@ augroup MyCursor
   autocmd InsertLeave,WinEnter,VimEnter * set cursorline
   autocmd InsertEnter,WinLeave * set nocursorline
 augroup END
-endif " if >0
+endif " s:vimrc_level > 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use incremental search as default
+if s:vimrc_level > 0
+set incsearch                  " Incremental search ON
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
+endif " s:vimrc_level > 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if s:vimrc_level > 0
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
+endif " s:vimrc_level > 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Break undo sequence: CTRL-G u
+if s:vimrc_level > 0
+if empty(mapcheck('<C-U>', 'i'))
+  inoremap <C-U> <C-G>u<C-U>
+endif
+if empty(mapcheck('<C-W>', 'i'))
+  inoremap <C-W> <C-G>u<C-W>
+endif
+endif " s:vimrc_level > 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set up <leader> usage in NORMAL mode
