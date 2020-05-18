@@ -28,11 +28,11 @@ set pastetoggle=<f2>
 " Map quick "kjk"  to enter "kj"    in insert mode (or wait after "k")
 " Use quick "kjkk" to enter "kjk"   in insert mode
 " Accidental use of "kj" in NORMAL MODE does no harm!
-inoremap kjk kj
-inoremap kj  <Esc>
+"inoremap kjk kj
+"inoremap kj  <Esc>
 
-tnoremap kjk kj
-tnoremap kj  <C-W>N
+"tnoremap kjk kj
+"tnoremap kj  <C-W>N
 
 " Remap to apply Macro with "Q" ("qq" to record, "qq" to quit, "Q" to apply)
 nnoremap Q @q
@@ -73,8 +73,8 @@ endif " s:vimrc_level > 0
 if s:vimrc_level > 0
 " Remap in visual mode < > related
 " (This kills normal use of . after > but more visible)
-xnoremap > >gv
-xnoremap < <gv
+"xnoremap > >gv
+"xnoremap < <gv
 " Don't remap <TAB> in NORMAL
 
 " For smarter command line <c-n>t<c-p>
@@ -95,13 +95,13 @@ endif " s:vimrc_level > 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cursorline in-NORMAL (and starting)
 "
-if s:vimrc_level > 0
-augroup MyCursor
-  au!
-  autocmd InsertLeave,WinEnter,VimEnter * set cursorline
-  autocmd InsertEnter,WinLeave * set nocursorline
-augroup END
-endif " s:vimrc_level > 0
+"if s:vimrc_level > 0
+"augroup MyCursor
+"  au!
+"  autocmd InsertLeave,WinEnter,VimEnter * set cursorline
+"  autocmd InsertEnter,WinLeave * set nocursorline
+"augroup END
+"endif " s:vimrc_level > 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use incremental search as default
