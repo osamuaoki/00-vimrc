@@ -24,15 +24,19 @@ if s:vimrc_level > 0
 set nopaste
 set pastetoggle=<f2>
 
-" Map quick "kj"   to enter "<ESC>" in insert mode (remember as "knee jerk")
-" Map quick "kjk"  to enter "kj"    in insert mode (or wait after "k")
-" Use quick "kjkk" to enter "kjk"   in insert mode
-" Accidental use of "kj" in NORMAL MODE does no harm!
-"inoremap kjk kj
-"inoremap kj  <Esc>
 
-"tnoremap kjk kj
-"tnoremap kj  <C-W>N
+""" XXX COMMENTED OUT XXX
+""" Now I map Caps to Esc
+"""
+"""" Map quick "kj"   to enter "<ESC>" in insert mode (remember as "knee jerk")
+"""" Map quick "kjk"  to enter "kj"    in insert mode (or wait after "k")
+"""" Use quick "kjkk" to enter "kjk"   in insert mode
+"""" Accidental use of "kj" in NORMAL MODE does no harm!
+"""inoremap kjk kj
+"""inoremap kj  <Esc>
+
+"""tnoremap kjk kj
+"""tnoremap kj  <C-W>N
 
 " Remap to apply Macro with "Q" ("qq" to record, "qq" to quit, "Q" to apply)
 nnoremap Q @q
@@ -40,42 +44,45 @@ xnoremap Q :norm @q<cr>
 
 endif " s:vimrc_level > 0
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" REMAP inspired by vim manual: ins-completion (with some twist)
-
-" Auto complete <C-N> with <TAB> if tailing non-space character
-"
-if s:vimrc_level > 0
-function! CleverTab()
-  if strpart( getline('.'), 0, col('.')-1 ) =~ '\(^\|\s\)$'
-    return "\<Tab>"
-  else
-    return "\<C-N>"
-  endif
-endfunction
-inoremap <Tab> <C-R>=CleverTab()<CR>
-
-" Auto complete <C-P> with <S-TAB> if tailing non-space character
-"
-function! CleverSTab()
-  if strpart( getline('.'), 0, col('.')-1 ) =~ '\(^\|\s\)$'
-    return "\<S-Tab>"
-  else
-    return "\<C-P>"
-  endif
-endfunction
-inoremap <S-Tab> <C-R>=CleverSTab()<CR>
-endif " s:vimrc_level > 0
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" REMAP inspired by vim manual: ins-completion (with some twist)
+"""
+"""" Auto complete <C-N> with <TAB> if tailing non-space character
+""""
+"""if s:vimrc_level > 0
+"""function! CleverTab()
+"""  if strpart( getline('.'), 0, col('.')-1 ) =~ '\(^\|\s\)$'
+"""    return "\<Tab>"
+"""  else
+"""    return "\<C-N>"
+"""  endif
+"""endfunction
+"""inoremap <Tab> <C-R>=CleverTab()<CR>
+"""
+"""" Auto complete <C-P> with <S-TAB> if tailing non-space character
+""""
+"""function! CleverSTab()
+"""  if strpart( getline('.'), 0, col('.')-1 ) =~ '\(^\|\s\)$'
+"""    return "\<S-Tab>"
+"""  else
+"""    return "\<C-P>"
+"""  endif
+"""endfunction
+"""inoremap <S-Tab> <C-R>=CleverSTab()<CR>
+"""endif " s:vimrc_level > 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " From mhinz/vim-galore https://github.com/mhinz/vim-galore
 
 if s:vimrc_level > 0
-" Remap in visual mode < > related
-" (This kills normal use of . after > but more visible)
-"xnoremap > >gv
-"xnoremap < <gv
-" Don't remap <TAB> in NORMAL
+""" XXX COMMENTED OUT XXX
+"""" Remap in visual mode < > related
+"""" (This kills normal use of . after > but more visible)
+"""xnoremap > >gv
+"""xnoremap < <gv
+"""" Don't remap <TAB> in NORMAL
+"""" Simply do "." dot-key
+
 
 " For smarter command line <c-n>t<c-p>
 cnoremap <c-n>  <down>
@@ -93,15 +100,16 @@ nnoremap <c-o>  <c-o>zvzz
 endif " s:vimrc_level > 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" cursorline in-NORMAL (and starting)
-"
-"if s:vimrc_level > 0
-"augroup MyCursor
-"  au!
-"  autocmd InsertLeave,WinEnter,VimEnter * set cursorline
-"  autocmd InsertEnter,WinLeave * set nocursorline
-"augroup END
-"endif " s:vimrc_level > 0
+""" XXX COMMENTED OUT XXX
+"""" cursorline in-NORMAL (and starting)
+""""
+""""if s:vimrc_level > 0
+""""augroup MyCursor
+""""  au!
+""""  autocmd InsertLeave,WinEnter,VimEnter * set cursorline
+""""  autocmd InsertEnter,WinLeave * set nocursorline
+""""augroup END
+""""endif " s:vimrc_level > 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use incremental search as default
