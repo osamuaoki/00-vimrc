@@ -70,7 +70,7 @@ _____________________________________________________________________________
 
 >
  Local tricks
- kj  as <ESC>
+ CapL  as <ESC> via GNOME
  Q   as @q
 <
 
@@ -87,23 +87,24 @@ Things to learn
  vimgrep make ...
 <
 _____________________________________________________________________________
-US keyboard
+US vs. JP keyboard
 
 >
- ←←←←←→→→→→ XXX
- 5432222345 555
+        US Keyboard                     JA Keyboard
+        ←←←←←→→→→→ XXX                  ←←←←←→→→→→ XXX
+        5432222345 555                  5432222345 555
 
- 1234567890 -=  ← un-shifted
- !@#$%^&*() _+
+   ~    !@#$%^&*() _+             H/Z   !"#$%&'()  =~|
+   `    1234567890 -=   BS        KAN   1234567890 -^¥   BS
 
- qwertyuiop []\ ← un-shifted
- ↑↑↑↑↑↑↑↑↑↑ {}|
+        ↑↑↑↑↑↑↑↑↑↑ {}   |               ↑↑↑↑↑↑↑↑↑↑ `{    E
+  TAB   qwertyuiop []   \         TAB   qwertyuiop @[    n
+                                                         t
+        ↑↑↑↑↑↑↑↑↑: "              CapL  ↑↑↑↑↑↑↑↑↑+ *}    e
+  CapL  asdfghjkl; '  Enter       Eisu  asdfghjkl; :]    r
 
- asdfghjkl; '   ← un-shifted
- ↑↑↑↑↑↑↑↑↑: "
-
- zxcvbnm,./     ← un-shifted
- ↑↑↑↑↑↑↑<>?
+        ↑↑↑↑↑↑↑<>?                      ↑↑↑↑↑↑↑<>? _
+  Sift  zxcvbnm,./    Shift       Sift  zxcvbnm,./ \   Shift
 <
 _____________________________________________________________________________
 " vim:set sts=2 sw=2 ai si et tw=78:
